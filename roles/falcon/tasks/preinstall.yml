@@ -23,6 +23,12 @@
      falcon_os_family: linux
   when: ansible_os_family == "RedHat"
 
+- name: CrowdStrike Falcon | Determine Target OS
+  set_fact:
+    falcon_target_os: SLES
+    falcon_os_family: linux
+  when: ansible_distribution == "SLES"
+
 - set_fact:
     installed_sensor: falcon-sensor
   when:

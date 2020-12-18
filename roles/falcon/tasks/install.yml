@@ -36,6 +36,9 @@
     package_facts:
       manager: auto
 
+  - debug:
+      msg: "{{ non_win_pkg }}"
+
   - name: CrowdStrike Falcon | Install Falcon Sensor Package (Linux)
     package:
       name: "{{ non_win_pkg }}"
