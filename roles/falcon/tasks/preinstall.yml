@@ -29,6 +29,12 @@
      falcon_os_family: "{{ ansible_system | lower }}"
   when: ansible_distribution == "Ubuntu"
 
+- name: CrowdStrike Falcon | Determine if Target OS Is Debian
+  set_fact:
+     falcon_target_os: Debian
+     falcon_os_family: "{{ ansible_system | lower }}"
+  when: ansible_distribution == "Debian"
+
 - set_fact:
     installed_sensor: falcon-sensor
   when:
