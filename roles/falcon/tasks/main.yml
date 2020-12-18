@@ -10,6 +10,8 @@
     - include_tasks: preinstall.yml
   when:
     - not falcon_uninstall
+  become: true
+  become_user: root
 
 - block:
   - include_tasks: url.yml

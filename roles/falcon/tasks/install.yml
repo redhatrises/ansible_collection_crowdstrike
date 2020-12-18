@@ -15,6 +15,7 @@
     when:
       - ansible_pkg_mgr in linux_packagers
       - falcon_sensor_download is not defined
+      - falcon_api_installer_package is not defined
 
   - name: CrowdStrike Falcon | Import CrowdStrike Falcon RPM key from a file
     rpm_key:
@@ -38,8 +39,8 @@
 
   - name: CrowdStrike Falcon | Install Falcon Sensor Package (Linux)
     package:
-      name: "{{ non_win_pkg }}"
-      state: installed
+      deb: "{{ non_win_pkg }}"
+      state: present
     when: installed_sensor not in ansible_facts.packages
     register: falcon_installed
 
