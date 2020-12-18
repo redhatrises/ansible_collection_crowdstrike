@@ -26,8 +26,15 @@
 - name: CrowdStrike Falcon | Determine if Target OS Is SLES
   set_fact:
     falcon_target_os: SLES
-    falcon_os_family: linux
+    falcon_os_family: "{{ ansible_system | lower }}"
   when: ansible_distribution == "SLES"
+
+- name: CrowdStrike Falcon | Determine if Target OS Is Amazon Linux
+  set_fact:
+    falcon_target_os: "Amazon%20Linux"
+    falcon_os_family: "{{ ansible_system | lower }}"
+    ansible_python_interpreter: /usr/bin/python
+  when: ansible_distribution == "Amazon"
 
 - name: CrowdStrike Falcon | Determine if Target OS Is Ubuntu
   set_fact:
