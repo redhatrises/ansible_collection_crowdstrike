@@ -25,5 +25,5 @@ jobs:
         run: |
           gh release upload $TAG ./crowdstrike-falcon*.tar.gz
         env:
-          TAG: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          TAG: ${{ github.event.release.tag_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
