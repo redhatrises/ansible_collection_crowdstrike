@@ -22,9 +22,8 @@ jobs:
         run: |
           ansible-galaxy collection build
       - name: Release artifacts to Git Hub
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: ./crowdstrike-falcon*.tar.gz
-          allowUpdates: true
-          name: ${{ github.event.release.tag_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload $TAG ./crowdstrike-falcon*.tar.gz
+        env:
+          TAG: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
